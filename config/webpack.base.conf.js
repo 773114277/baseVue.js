@@ -9,10 +9,16 @@ const htmlWebpackPlugin = require('html-webpack-plugin')
 // 复制目录
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
+<<<<<<< HEAD
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
 module.exports = {
+=======
+
+module.exports = {
+    // context: path.resolve(__dirname, '../'),
+>>>>>>> 48f1a66816bbff9050cb70f55c07eaec0d0d7cab
     entry: {
         main: path.resolve(__dirname, '../app/main.js')
     },
@@ -49,6 +55,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+<<<<<<< HEAD
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
@@ -58,6 +65,9 @@ module.exports = {
                     },
                     'css-loader'
                 ]
+=======
+                use: ['style-loader', 'css-loader']
+>>>>>>> 48f1a66816bbff9050cb70f55c07eaec0d0d7cab
             },
             {
                 test: /\.less$/,
@@ -99,12 +109,24 @@ module.exports = {
             ignore: ['.*']
         }]),
         // vue-loader依赖
+<<<<<<< HEAD
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
             filename: "css/[name].[chunkhash:8].css",
             chunkFilename: "css/[id].css"
         })
     ],
+=======
+        new VueLoaderPlugin()
+    ],
+    /**
+     * 调试工具
+     * 开发环境推荐：cheap-module-eval-source-map
+     * 生产环境推荐：cheap-module-source-map
+     */
+    devtool: process.env.NODE_ENV === 'development' ?
+        '#cheap-module-eval-source-map' : 'cheap-module-source-map',
+>>>>>>> 48f1a66816bbff9050cb70f55c07eaec0d0d7cab
     resolve: {
         // 自动解析确定的扩展名
         extensions: ['.vue', '.js'],
