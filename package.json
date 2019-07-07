@@ -18,10 +18,7 @@
     "copy-webpack-plugin": "^5.0.3",
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
-<<<<<<< HEAD
     "file-loader": "^4.0.0",
-=======
->>>>>>> 48f1a66816bbff9050cb70f55c07eaec0d0d7cab
     "html-webpack-plugin": "^4.0.0-beta.5",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
