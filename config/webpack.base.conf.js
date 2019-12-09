@@ -11,10 +11,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, '../app/main.js')
+        main: ["babel-polyfill", path.resolve(__dirname, '../src/main.js')]
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -27,14 +26,15 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /\.vue$/,
-                loader: 'vue-loader'
-            },
+            test: /\.vue$/,
+            loader: 'vue-loader'
+        },
             {
-                test: /\.jsx$/,
-                use: [{
-                    loader: 'babel-loader'
-                }]
+                test: /\.js$/,
+                loader: 'babel-loader',
+                query: {compact: false},
+                include: [path.resolve('src'), path.resolve('static/js')],
+                exclude: /(node_modules|bower_components)/
             },
             {
                 test: /\.(gif|jpg|jpeg|png|svg)$/,
@@ -74,9 +74,8 @@ module.exports = {
                 ]
             },
             {
-                // babel-loader   排除无需上传的js文件
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/
+                test: /\.(woff|svg|eot|ttf)\??.*$/,
+                loader: 'url-loader'
             }
         ]
     },
@@ -110,7 +109,7 @@ module.exports = {
         extensions: ['.vue', '.js'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': path.resolve(__dirname, '../app')
+            '@': path.resolve(__dirname, '../src')
         }
     },
     node: {
